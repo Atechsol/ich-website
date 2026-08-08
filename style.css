@@ -929,14 +929,11 @@ img {
     border: 1px solid var(--border-l);
 }
 
-.about__img-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.about__img-photo {
     width: 100%;
     height: 100%;
-    font-size: 6rem;
-    color: rgba(201, 169, 110, .2);
+    object-fit: cover;
+    object-position: top center;
 }
 
 .about__badge {
