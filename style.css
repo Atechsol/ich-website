@@ -1426,6 +1426,7 @@ img {
 }
 
 .carousel__track {
+    position: relative;
     display: flex;
     gap: 1.5rem;
     transition: transform .5s var(--ease);

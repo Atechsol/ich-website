@@ -93,19 +93,22 @@ document.querySelectorAll('.hero__stat-n[data-target]').forEach(el => counterObs
 function initCarousel(trackId) {
     const track = document.getElementById(trackId);
     if (!track) return;
-    let offset = 0;
+    let index = 0;
 
-    const step = () => {
-        const first = track.firstElementChild;
-        if (!first) return 240;
-        const gap = parseInt(getComputedStyle(track).gap) || 24;
-        return first.offsetWidth + gap;
-    };
+    // Cards have variable widths (text-driven), so we snap to each card's own
+    // offsetLeft rather than assuming a fixed step — a constant step drifts
+    // out of alignment after a few clicks once card widths differ.
     const max = () => Math.max(0, track.scrollWidth - track.parentElement.offsetWidth);
-    const clamp = v => Math.max(0, Math.min(v, max()));
-    const move = delta => {
-        offset = clamp(offset + delta * step());
+    const applyOffset = () => {
+        const cards = track.children;
+        index = Math.max(0, Math.min(index, cards.length - 1));
+        const target = cards[index];
+        const offset = target ? Math.min(target.offsetLeft, max()) : 0;
         track.style.transform = `translateX(-${offset}px)`;
+    };
+    const move = delta => {
+        index += delta;
+        applyOffset();
     };
 
     document.querySelectorAll(`[data-track="${trackId}"]`).forEach(btn => {
@@ -119,10 +122,8 @@ function initCarousel(trackId) {
         if (Math.abs(dx) > 44) move(dx > 0 ? 1 : -1);
     });
 
-    window.addEventListener('resize', () => {
-        offset = clamp(offset);
-        track.style.transform = `translateX(-${offset}px)`;
-    });
+    window.addEventListener('resize', applyOffset, { passive: true });
+    applyOffset();
 }
 
 ['committee-track', 'branch-track', 'places-track'].forEach(initCarousel);
