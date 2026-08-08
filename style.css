@@ -348,12 +348,20 @@ img {
 ============================================================ */
 .hero {
     position: relative;
-    min-height: 100vh;
+    height: 200vh;
+    background: var(--offwhite);
+    --hero-progress: 0;
+    --hero-reveal: 0;
+}
+
+.hero__pin {
+    position: sticky;
+    top: 0;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: var(--offwhite);
     overflow: hidden;
 }
 
@@ -385,9 +393,27 @@ img {
 .hero__content {
     position: relative;
     z-index: 1;
-    text-align: center;
+    width: 100%;
+    max-width: 1200px;
     padding: 0 1.5rem;
-    max-width: 900px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+}
+
+.hero__left {
+    width: fit-content;
+    max-width: 600px;
+    text-align: left;
+    will-change: transform, opacity;
+    /* Starts centered over the full hero width (--hero-center-offset, measured
+       once in script.js — never recomputed inside the scroll handler) and
+       collapses to its resting left position as --hero-reveal goes 0 -> 1,
+       then keeps drifting slightly further left/fading as --hero-progress
+       continues 0 -> 1 for the rest of the pinned scroll. */
+    transform: translateX(calc((1 - var(--hero-reveal)) * var(--hero-center-offset, 0px) + var(--hero-progress) * -40px));
+    opacity: calc(1 - var(--hero-progress) * .3);
 }
 
 .hero__eyebrow {
@@ -403,7 +429,7 @@ img {
 
 .hero__title {
     font-family: var(--serif);
-    font-size: clamp(4rem, 10vw, 9rem);
+    font-size: clamp(3.2rem, 6.5vw, 6.5rem);
     font-weight: 300;
     line-height: .95;
     color: var(--dark);
@@ -419,15 +445,86 @@ img {
     font-size: .95rem;
     color: rgba(17, 17, 17, .55);
     max-width: 440px;
-    margin: 0 auto 2.5rem;
+    margin: 0 0 2.5rem;
     line-height: 1.8;
 }
 
 .hero__actions {
     display: flex;
     gap: 1rem;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
+}
+
+.hero__right {
+    will-change: transform, opacity;
+    opacity: var(--hero-reveal);
+    transform: translateX(calc((1 - var(--hero-reveal)) * 60px));
+}
+
+.hero__reel {
+    height: clamp(440px, 56vh, 640px);
+    width: 100%;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(17, 17, 17, .16);
+    border-radius: 18px;
+}
+
+/* 3 photo cards stacked directly on top of each other. script.js computes
+   a 0-1 opacity + a small slide-in offset per card from --hero-progress —
+   card 1 fades out in place ("into" the hero) while card 2 slides up and
+   crossfades over it, then the same happens for card 2 -> card 3. Defaults
+   below (card 1 shown, others hidden) are what static/reduced-motion see,
+   since script.js never sets these custom properties in that mode. */
+.hero__reel-item {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    will-change: transform, opacity;
+    /* Smooths out choppy wheel/trackpad scroll deltas — the underlying
+       progress is still 100% scroll-driven, this just eases each step
+       instead of snapping straight to it. */
+    transition: opacity .45s var(--ease), transform .45s var(--ease);
+}
+
+.hero__reel-item:nth-child(1) {
+    opacity: var(--card0-opacity, 1);
+}
+
+.hero__reel-item:nth-child(2) {
+    opacity: var(--card1-opacity, 0);
+    transform: translateX(calc(var(--card1-x, 70) * 1px));
+}
+
+.hero__reel-item:nth-child(3) {
+    opacity: var(--card2-opacity, 0);
+    transform: translateY(calc(var(--card2-y, 70) * 1px));
+}
+
+.hero__reel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Static fallback — mobile (JS-gated) and prefers-reduced-motion (CSS-guaranteed
+   below) both land here: no pin, no scroll-driven transform, both columns just shown. */
+.hero--static {
+    height: 100vh;
+    --hero-reveal: 1;
+}
+
+.hero--static .hero__pin {
+    position: static;
+    height: 100%;
+}
+
+.hero--static .hero__left,
+.hero--static .hero__right {
+    transform: none;
+    opacity: 1;
 }
 
 .hero__scroll {
@@ -516,6 +613,30 @@ img {
     width: 1px;
     height: 40px;
     background: var(--border-l);
+}
+
+/* Reduced motion: guaranteed via CSS alone, independent of script.js —
+   no pin, no scroll-driven transform, reel marquee stopped. */
+@media (prefers-reduced-motion: reduce) {
+    .hero {
+        height: 100vh;
+        --hero-reveal: 1;
+    }
+
+    .hero__pin {
+        position: static;
+        height: 100%;
+    }
+
+    .hero__left,
+    .hero__right {
+        transform: none;
+        opacity: 1;
+    }
+
+    .hero__reel-track {
+        transform: none;
+    }
 }
 
 /* ============================================================
@@ -2085,6 +2206,46 @@ img {
 
     .section--tight {
         padding: 4rem 0;
+    }
+
+    /* Mobile: no pin-scroll effect at all — script.js also skips attaching
+       the scroll listener below this breakpoint via matchMedia. */
+    .hero {
+        height: auto;
+        --hero-reveal: 1;
+    }
+
+    .hero__pin {
+        position: static;
+        height: auto;
+        padding: calc(var(--nav-h) + 3rem) 0 3rem;
+    }
+
+    .hero__content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+    }
+
+    .hero__left,
+    .hero__right {
+        transform: none;
+        opacity: 1;
+    }
+
+    .hero__left {
+        max-width: 100%;
+        text-align: center;
+        justify-self: center;
+        margin: 0 auto;
+    }
+
+    .hero__actions {
+        justify-content: center;
+    }
+
+    .hero__reel {
+        height: 280px;
     }
 
     .hero__title {

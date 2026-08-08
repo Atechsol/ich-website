@@ -172,6 +172,111 @@ document.querySelectorAll('.reveal-call').forEach(btn => {
 });
 
 /* ============================================================
+   HERO SCROLL-DRIVEN ANIMATION (home page only)
+   Desktop + motion-safe: pins the hero for 200vh of scroll and drives
+   --hero-progress / --hero-reveal custom properties read by style.css.
+   Mobile (<861px) and prefers-reduced-motion: listener never attaches;
+   style.css alone forces the static two-column layout in both cases.
+============================================================ */
+const hero = document.getElementById('home');
+
+if (hero) {
+    const heroContentEl = hero.querySelector('.hero__content');
+    const heroLeftEl = hero.querySelector('.hero__left');
+    const desktopMq = window.matchMedia('(min-width: 861px)');
+    const motionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    // Cached once on load/resize — never read inside the scroll handler.
+    let heroTop = 0;
+    let scrollRange = 0;
+    let ticking = false;
+
+    function measure() {
+        const rect = hero.getBoundingClientRect();
+        heroTop = rect.top + window.scrollY;
+        scrollRange = Math.max(1, hero.offsetHeight - window.innerHeight);
+
+        // How far --hero-left needs to shift right (from its resting left-edge
+        // position) to look centered over the full content width at scroll
+        // start. Measured once here, never inside the scroll/rAF loop.
+        if (heroContentEl && heroLeftEl) {
+            const centerOffset = Math.max(0, (heroContentEl.clientWidth - heroLeftEl.offsetWidth) / 2);
+            hero.style.setProperty('--hero-center-offset', centerOffset + 'px');
+        }
+    }
+
+    // Runs inside rAF: only WRITES custom properties, no layout reads.
+    function applyProgress() {
+        const progress = Math.min(Math.max((window.scrollY - heroTop) / scrollRange, 0), 1);
+        const reveal = Math.min(progress / 0.4, 1);
+        hero.style.setProperty('--hero-progress', progress);
+        hero.style.setProperty('--hero-reveal', reveal);
+
+        // 3-card crossfade with a hold in between each transition, so cards
+        // don't fade the instant they finish sliding in — quick crossfade,
+        // long hold, quick crossfade, long hold to the end.
+        const clamp01 = v => Math.min(Math.max(v, 0), 1);
+        const t0 = 0, t1 = 0.15, t2 = 0.45, t3 = 0.6;
+        const rise1 = clamp01((progress - t0) / (t1 - t0));
+        const fall1 = clamp01((t3 - progress) / (t3 - t2));
+        const c0 = clamp01((t1 - progress) / (t1 - t0));
+        const c1 = Math.min(rise1, fall1);
+        const c2 = clamp01((progress - t2) / (t3 - t2));
+        hero.style.setProperty('--card0-opacity', c0);
+        hero.style.setProperty('--card1-opacity', c1);
+        hero.style.setProperty('--card2-opacity', c2);
+        hero.style.setProperty('--card1-x', (70 * (1 - rise1)).toFixed(2));
+        hero.style.setProperty('--card2-y', (70 * (1 - c2)).toFixed(2));
+
+        ticking = false;
+    }
+
+    function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(applyProgress);
+    }
+
+    function onResize() {
+        if (desktopMq.matches && !motionMq.matches) measure();
+    }
+
+    function syncMode() {
+        const active = desktopMq.matches && !motionMq.matches;
+        hero.classList.toggle('hero--static', !active);
+
+        if (active) {
+            measure();
+            window.addEventListener('scroll', onScroll, { passive: true });
+            applyProgress();
+        } else {
+            window.removeEventListener('scroll', onScroll);
+            ticking = false;
+            hero.style.removeProperty('--hero-progress');
+            hero.style.removeProperty('--hero-reveal');
+            hero.style.removeProperty('--card0-opacity');
+            hero.style.removeProperty('--card1-opacity');
+            hero.style.removeProperty('--card2-opacity');
+            hero.style.removeProperty('--card1-x');
+            hero.style.removeProperty('--card2-y');
+        }
+    }
+
+    syncMode();
+    desktopMq.addEventListener('change', syncMode);
+    motionMq.addEventListener('change', syncMode);
+    window.addEventListener('resize', onResize, { passive: true });
+    window.addEventListener('orientationchange', onResize);
+
+    // Web font swap can change hero__title's measured width after first paint —
+    // re-measure once (not a scroll-loop read) so the center offset stays accurate.
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(onResize);
+    }
+
+}
+
+/* ============================================================
    CONTACT FORM
 ============================================================ */
 const form = document.getElementById('contactForm');
