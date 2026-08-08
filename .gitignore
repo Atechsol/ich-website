@@ -40,3 +40,4 @@ build/
 *.tar.gz
 *.bak
 *.tmp
+claude.md
