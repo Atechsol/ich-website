@@ -41,3 +41,7 @@ build/
 *.bak
 *.tmp
 claude.md
+
+# Raw/unoptimized source images — kept locally, never deployed
+images/*-original.jpg
+images/Signature dishes/
