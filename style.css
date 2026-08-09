@@ -198,8 +198,8 @@ img {
 }
 
 .nav__wordmark {
-    height: clamp(32px, 4.5vw, 46px);
-    width: auto;
+    width: clamp(130px, 15vw, 190px);
+    height: auto;
     transition: transform .3s var(--ease);
 }
 
