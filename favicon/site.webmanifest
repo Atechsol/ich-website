@@ -1,0 +1,13 @@
+{
+    "name": "Indian Coffee House — Kannur",
+    "short_name": "ICH Kannur",
+    "icons": [
+        { "src": "android-chrome-maskable-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+        { "src": "android-chrome-maskable-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+        { "src": "favicon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+        { "src": "favicon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+    ],
+    "theme_color": "#ba110c",
+    "background_color": "#faf8f5",
+    "display": "standalone"
+}
