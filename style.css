@@ -1927,6 +1927,13 @@ img {
     max-width: 280px;
 }
 
+.footer__mark {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
 .footer__name {
     font-family: var(--serif);
     font-size: 1rem;
