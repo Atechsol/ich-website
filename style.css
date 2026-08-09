@@ -2468,20 +2468,60 @@ img {
 }
 
 /* ============================================================
-   TOUCH FALLBACK — no hover on touch devices, so don't gate card
-   details behind an interaction that doesn't exist there. Placed
-   last so it wins the cascade over each card's own :hover rule
-   regardless of where those are defined earlier in the file.
+   TOUCH FALLBACK — no hover on touch devices, so the blur-and-reveal
+   treatment (which depends on :hover) doesn't work there. Rather than
+   forcing that hover state on permanently — a blurred photo sitting
+   there dimmed all the time reads as broken, not as a design — touch/
+   narrow-viewport devices get a plain stacked card instead: sharp
+   photo on top, details in a normal text block underneath. Placed
+   last so it wins the cascade over each card's own rules regardless
+   of where those are defined earlier in the file.
 ============================================================ */
 @media (hover: none), (max-width: 860px) {
 
-    .branch-card__overlay,
-    .dish-card__overlay {
-        opacity: 1;
+    .branch-card,
+    .dish-card {
+        aspect-ratio: unset;
+        display: flex;
+        flex-direction: column;
+        background: var(--white);
+        border: 1px solid var(--border-l);
     }
 
-    .branch-card img,
+    .branch-card img {
+        aspect-ratio: 326 / 264;
+        filter: none;
+        transform: none;
+    }
+
     .dish-card img {
-        filter: blur(1px) brightness(.55);
+        aspect-ratio: 4 / 3;
+        filter: none;
+        transform: none;
+    }
+
+    .branch-card__overlay,
+    .dish-card__overlay {
+        position: static;
+        opacity: 1;
+        padding: 1.1rem 1.2rem;
+    }
+
+    .branch-card__overlay {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .branch-card__overlay h4,
+    .dish-card__overlay h4 {
+        color: var(--dark);
+    }
+
+    .branch-card__overlay p {
+        color: var(--muted);
+    }
+
+    .branch-card__overlay a {
+        color: var(--gold-dk);
     }
 }
