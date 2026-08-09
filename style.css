@@ -394,7 +394,7 @@ img {
 ============================================================ */
 .hero {
     position: relative;
-    height: 200vh;
+    height: 300vh;
     background: var(--offwhite);
     --hero-progress: 0;
     --hero-reveal: 0;
@@ -531,7 +531,7 @@ img {
     /* Smooths out choppy wheel/trackpad scroll deltas — the underlying
        progress is still 100% scroll-driven, this just eases each step
        instead of snapping straight to it. */
-    transition: opacity .45s var(--ease), transform .45s var(--ease);
+    transition: opacity .6s var(--ease), transform .6s var(--ease);
 }
 
 .hero__reel-item:nth-child(1) {
@@ -540,7 +540,7 @@ img {
 
 .hero__reel-item:nth-child(2) {
     opacity: var(--card1-opacity, 0);
-    transform: translateX(calc(var(--card1-x, 70) * 1px));
+    transform: translateY(calc(var(--card1-y, 70) * 1px));
 }
 
 .hero__reel-item:nth-child(3) {

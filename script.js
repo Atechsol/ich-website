@@ -229,7 +229,7 @@ if (hero) {
         // don't fade the instant they finish sliding in — quick crossfade,
         // long hold, quick crossfade, long hold to the end.
         const clamp01 = v => Math.min(Math.max(v, 0), 1);
-        const t0 = 0, t1 = 0.15, t2 = 0.45, t3 = 0.6;
+        const t0 = 0, t1 = 0.12, t2 = 0.55, t3 = 0.65;
         const rise1 = clamp01((progress - t0) / (t1 - t0));
         const fall1 = clamp01((t3 - progress) / (t3 - t2));
         const c0 = clamp01((t1 - progress) / (t1 - t0));
@@ -238,7 +238,7 @@ if (hero) {
         hero.style.setProperty('--card0-opacity', c0);
         hero.style.setProperty('--card1-opacity', c1);
         hero.style.setProperty('--card2-opacity', c2);
-        hero.style.setProperty('--card1-x', (70 * (1 - rise1)).toFixed(2));
+        hero.style.setProperty('--card1-y', (70 * (1 - rise1)).toFixed(2));
         hero.style.setProperty('--card2-y', (70 * (1 - c2)).toFixed(2));
 
         ticking = false;
@@ -270,7 +270,7 @@ if (hero) {
             hero.style.removeProperty('--card0-opacity');
             hero.style.removeProperty('--card1-opacity');
             hero.style.removeProperty('--card2-opacity');
-            hero.style.removeProperty('--card1-x');
+            hero.style.removeProperty('--card1-y');
             hero.style.removeProperty('--card2-y');
         }
     }
