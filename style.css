@@ -197,6 +197,16 @@ img {
     justify-content: center;
 }
 
+.nav__wordmark {
+    height: clamp(32px, 4.5vw, 46px);
+    width: auto;
+    transition: transform .3s var(--ease);
+}
+
+.nav__logo-center:hover .nav__wordmark {
+    transform: scale(1.06);
+}
+
 .nav__logomark {
     width: 42px;
     height: 42px;
