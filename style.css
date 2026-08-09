@@ -79,6 +79,44 @@ img {
 }
 
 /* ============================================================
+   PAGE LOADER
+============================================================ */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    transition: opacity .4s var(--ease), visibility .4s var(--ease);
+}
+
+.page-loader.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.page-loader__mark {
+    width: clamp(64px, 16vw, 140px);
+    height: auto;
+    animation: pageLoaderSpin 1.4s linear infinite;
+}
+
+@keyframes pageLoaderSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page-loader__mark {
+        animation: none;
+    }
+}
+
+/* ============================================================
    NAVBAR — floating, centered logo
 ============================================================ */
 .nav {

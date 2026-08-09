@@ -1,4 +1,16 @@
 /* ============================================================
+   PAGE LOADER — hidden once every resource (images, fonts, etc.)
+   has actually finished loading, not just on DOM-ready. Capped with
+   a fallback timeout so a single slow asset can't strand it forever.
+============================================================ */
+const pageLoader = document.getElementById('pageLoader');
+if (pageLoader) {
+    const hideLoader = () => pageLoader.classList.add('is-hidden');
+    window.addEventListener('load', hideLoader);
+    setTimeout(hideLoader, 4000);
+}
+
+/* ============================================================
    NAVBAR — scroll shadow + burger toggle
 ============================================================ */
 const nav = document.getElementById('nav');
