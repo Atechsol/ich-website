@@ -16,17 +16,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
     <link rel="manifest" href="favicon/site.webmanifest" />
     <meta name="theme-color" content="#ba110c" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.min.css" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /></noscript>
 </head>
 
 <body>
     <div class="page-loader" id="pageLoader" aria-hidden="true">
-        <img src="images/ICW- Kannur.png" alt="" class="page-loader__mark" />
+        <img src="images/ICW- Kannur.png" alt="" class="page-loader__mark" width="420" height="420"/>
     </div>
 
     <nav class="nav" id="nav">
@@ -39,7 +37,7 @@
             </ul>
 
             <a href="index.html" class="nav__logo-center" aria-label="Indian Coffee House — Home">
-                <img src="images/ICH.png" alt="Indian Coffee House" class="nav__wordmark" />
+                <img src="images/ICH.png" alt="Indian Coffee House" class="nav__wordmark" width="600" height="121"/>
             </a>
 
             <div class="nav__right-group">
@@ -91,7 +89,7 @@
             <div class="branch__panel active" id="kannur-panel">
                 <div class="branch-grid">
                     <div class="branch-card reveal">
-                        <img src="images/Branches/Indian-coffee-house_branch-payyanur-pic-1.png" alt="Indian Coffee House, Payyanur" loading="lazy" decoding="async" />
+                        <picture><source srcset="images/Branches/Indian-coffee-house_branch-payyanur-pic-1.webp" type="image/webp" /><img src="images/Branches/Indian-coffee-house_branch-payyanur-pic-1.jpg" alt="Indian Coffee House, Payyanur" loading="lazy" decoding="async" width="326" height="264"/></picture>
                         <div class="branch-card__overlay">
                             <h4>Payyanur</h4>
                             <p>Royal Complex, Payyanur</p>
@@ -99,7 +97,7 @@
                         </div>
                     </div>
                     <div class="branch-card reveal">
-                        <img src="images/Branches/Indian-coffee-house_branch-payyanur-pic-1.png" alt="Indian Coffee House, Taliparamba" loading="lazy" decoding="async" />
+                        <picture><source srcset="images/Branches/Indian-coffee-house_branch-payyanur-pic-1.webp" type="image/webp" /><img src="images/Branches/Indian-coffee-house_branch-payyanur-pic-1.jpg" alt="Indian Coffee House, Taliparamba" loading="lazy" decoding="async" width="326" height="264"/></picture>
                         <div class="branch-card__overlay">
                             <h4>Taliparamba</h4>
                             <p>N.H Road, Taliparamba</p>
@@ -107,7 +105,7 @@
                         </div>
                     </div>
                     <div class="branch-card reveal">
-                        <img src="images/Branches/Indian-coffee-house_branch-dharmshala-non-veg-pic-1.png" alt="Indian Coffee House, Dharamasala Non-Veg" loading="lazy" decoding="async" />
+                        <picture><source srcset="images/Branches/Indian-coffee-house_branch-dharmshala-non-veg-pic-1.webp" type="image/webp" /><img src="images/Branches/Indian-coffee-house_branch-dharmshala-non-veg-pic-1.jpg" alt="Indian Coffee House, Dharamasala Non-Veg" loading="lazy" decoding="async" width="326" height="264"/></picture>
                         <div class="branch-card__overlay">
                             <h4>Dharamasala (Non-Veg)</h4>
                             <p>N.H Dharamasala, Kannur</p>
@@ -115,7 +113,7 @@
                         </div>
                     </div>
                     <div class="branch-card reveal">
-                        <img src="images/Branches/Indian-coffee-house_branch-dharmshala-veg-pic-1.png" alt="Indian Coffee House, Dharamasala Veg" loading="lazy" decoding="async" />
+                        <picture><source srcset="images/Branches/Indian-coffee-house_branch-dharmshala-veg-pic-1.webp" type="image/webp" /><img src="images/Branches/Indian-coffee-house_branch-dharmshala-veg-pic-1.jpg" alt="Indian Coffee House, Dharamasala Veg" loading="lazy" decoding="async" width="326" height="264"/></picture>
                         <div class="branch-card__overlay">
                             <h4>Dharamasala (Veg)</h4>
                             <p>N.H Dharamasala, Kannur</p>
@@ -123,7 +121,7 @@
                         </div>
                     </div>
                     <div class="branch-card reveal">
-                        <img src="images/Branches/Indian-coffee-house_branch-kannur-sub-jail-road.png" alt="Indian Coffee House, South Bazar Sub Jail Road" loading="lazy" decoding="async" />
+                        <picture><source srcset="images/Branches/Indian-coffee-house_branch-kannur-sub-jail-road.webp" type="image/webp" /><img src="images/Branches/Indian-coffee-house_branch-kannur-sub-jail-road.jpg" alt="Indian Coffee House, South Bazar Sub Jail Road" loading="lazy" decoding="async" width="326" height="264"/></picture>
                         <div class="branch-card__overlay">
                             <h4>South Bazar — Sub Jail Rd</h4>
                             <p>South Bazar, Kannur</p>
@@ -131,7 +129,7 @@
                         </div>
                     </div>
                     <div class="branch-card reveal">
-                        <img src="images/Branches/Indian-coffee-Fort-road-kannur-pic-1.png" alt="Indian Coffee House, South Bazar" loading="lazy" decoding="async" />
+                        <picture><source srcset="images/Branches/Indian-coffee-Fort-road-kannur-pic-1.webp" type="image/webp" /><img src="images/Branches/Indian-coffee-Fort-road-kannur-pic-1.jpg" alt="Indian Coffee House, South Bazar" loading="lazy" decoding="async" width="326" height="264"/></picture>
                         <div class="branch-card__overlay">
                             <h4>South Bazar</h4>
                             <p>South Bazar, Kannur</p>
@@ -139,7 +137,7 @@
                         </div>
                     </div>
                     <div class="branch-card reveal">
-                        <img src="images/Branches/Indian-coffee-house_branch-kannur-Plaza-Building-pic-1.png" alt="Indian Coffee House, Non-Veg Section Kannur Town" loading="lazy" decoding="async" />
+                        <picture><source srcset="images/Branches/Indian-coffee-house_branch-kannur-Plaza-Building-pic-1.webp" type="image/webp" /><img src="images/Branches/Indian-coffee-house_branch-kannur-Plaza-Building-pic-1.jpg" alt="Indian Coffee House, Non-Veg Section Kannur Town" loading="lazy" decoding="async" width="326" height="264"/></picture>
                         <div class="branch-card__overlay">
                             <h4>Non-Veg Section</h4>
                             <p>Kannur Town</p>
@@ -147,7 +145,7 @@
                         </div>
                     </div>
                     <div class="branch-card reveal">
-                        <img src="images/Branches/Indian-coffee-house_branch-kannur-Plaza-Building-pic-1.png" alt="Indian Coffee House, Plaza Building Kannur" loading="lazy" decoding="async" />
+                        <picture><source srcset="images/Branches/Indian-coffee-house_branch-kannur-Plaza-Building-pic-1.webp" type="image/webp" /><img src="images/Branches/Indian-coffee-house_branch-kannur-Plaza-Building-pic-1.jpg" alt="Indian Coffee House, Plaza Building Kannur" loading="lazy" decoding="async" width="326" height="264"/></picture>
                         <div class="branch-card__overlay">
                             <h4>Plaza Building</h4>
                             <p>Plaza Building, Kannur</p>
@@ -155,7 +153,7 @@
                         </div>
                     </div>
                     <div class="branch-card reveal">
-                        <img src="images/Branches/Indian-coffee-Fort-road-kannur-pic-1.png" alt="Indian Coffee House, Fort Road Kannur" loading="lazy" decoding="async" />
+                        <picture><source srcset="images/Branches/Indian-coffee-Fort-road-kannur-pic-1.webp" type="image/webp" /><img src="images/Branches/Indian-coffee-Fort-road-kannur-pic-1.jpg" alt="Indian Coffee House, Fort Road Kannur" loading="lazy" decoding="async" width="326" height="264"/></picture>
                         <div class="branch-card__overlay">
                             <h4>Fort Road</h4>
                             <p>Fort Road, Kannur</p>
@@ -163,7 +161,7 @@
                         </div>
                     </div>
                     <div class="branch-card reveal">
-                        <img src="images/Branches/Indian-coffee-house_branch-Thalassery-pic-1.png" alt="Indian Coffee House, Thalassery M.G Road" loading="lazy" decoding="async" />
+                        <picture><source srcset="images/Branches/Indian-coffee-house_branch-Thalassery-pic-1.webp" type="image/webp" /><img src="images/Branches/Indian-coffee-house_branch-Thalassery-pic-1.jpg" alt="Indian Coffee House, Thalassery M.G Road" loading="lazy" decoding="async" width="326" height="264"/></picture>
                         <div class="branch-card__overlay">
                             <h4>Thalassery (M.G Road)</h4>
                             <p>M.G Road, Thalassery</p>
@@ -171,7 +169,7 @@
                         </div>
                     </div>
                     <div class="branch-card reveal">
-                        <img src="images/Branches/Indian-coffee-house_branch-manchodi-pic-1.png" alt="Indian Coffee House, Manjodi Thalassery" loading="lazy" decoding="async" />
+                        <picture><source srcset="images/Branches/Indian-coffee-house_branch-manchodi-pic-1.webp" type="image/webp" /><img src="images/Branches/Indian-coffee-house_branch-manchodi-pic-1.jpg" alt="Indian Coffee House, Manjodi Thalassery" loading="lazy" decoding="async" width="326" height="264"/></picture>
                         <div class="branch-card__overlay">
                             <h4>Manjodi, Thalassery</h4>
                             <p>Athulya Complex, Near Indira Gandhi Hospital</p>
@@ -179,7 +177,7 @@
                         </div>
                     </div>
                     <div class="branch-card reveal">
-                        <img src="images/Branches/Indian-coffee-house_branch-Iritty-pic-1.png" alt="Indian Coffee House, Iritty" loading="lazy" decoding="async" />
+                        <picture><source srcset="images/Branches/Indian-coffee-house_branch-Iritty-pic-1.webp" type="image/webp" /><img src="images/Branches/Indian-coffee-house_branch-Iritty-pic-1.jpg" alt="Indian Coffee House, Iritty" loading="lazy" decoding="async" width="326" height="264"/></picture>
                         <div class="branch-card__overlay">
                             <h4>Iritty</h4>
                             <p>Co-op Canteen Building, Near Iritty Bridge</p>
@@ -208,7 +206,7 @@
         <div class="footer__inner">
             <div class="footer__top">
                 <div class="footer__brand">
-                    <img src="images/ICW- Kannur.png" alt="Indian Coffee House" class="footer__mark" loading="lazy" decoding="async" />
+                    <img src="images/ICW- Kannur.png" alt="Indian Coffee House" class="footer__mark" loading="lazy" decoding="async" width="420" height="420"/>
                     <div>
                         <div class="footer__name">Indian Coffee House Kannur</div>
                         <div class="footer__sub">Indian Coffee Workers Co-operative Society Ltd. No. 4317 · Est. 1958
@@ -250,7 +248,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.min.js" defer></script>
 </body>
 
 </html>

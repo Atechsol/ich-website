@@ -16,17 +16,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
     <link rel="manifest" href="favicon/site.webmanifest" />
     <meta name="theme-color" content="#ba110c" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.min.css" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /></noscript>
 </head>
 
 <body>
     <div class="page-loader" id="pageLoader" aria-hidden="true">
-        <img src="images/ICW- Kannur.png" alt="" class="page-loader__mark" />
+        <img src="images/ICW- Kannur.png" alt="" class="page-loader__mark" width="420" height="420"/>
     </div>
 
     <nav class="nav" id="nav">
@@ -39,7 +37,7 @@
             </ul>
 
             <a href="index.html" class="nav__logo-center" aria-label="Indian Coffee House — Home">
-                <img src="images/ICH.png" alt="Indian Coffee House" class="nav__wordmark" />
+                <img src="images/ICH.png" alt="Indian Coffee House" class="nav__wordmark" width="600" height="121"/>
             </a>
 
             <div class="nav__right-group">
@@ -101,7 +99,7 @@
                 <div class="about__right">
                     <div class="about__img-block reveal">
                         <div class="about__img-inner">
-                            <img src="images/akg.jpg" alt="Com. A.K. Gopalan (A.K.G.), founder of the Indian Coffee Workers' Co-operative movement" class="about__img-photo" loading="lazy" decoding="async" />
+                            <picture><source srcset="images/akg.webp" type="image/webp" /><img src="images/akg.jpg" alt="Com. A.K. Gopalan (A.K.G.), founder of the Indian Coffee Workers' Co-operative movement" class="about__img-photo" loading="lazy" decoding="async" width="332" height="440"/></picture>
                         </div>
                         <div class="about__badge reveal-delay">
                             <span class="about__badge-n">1958</span>
@@ -270,7 +268,7 @@
         <div class="footer__inner">
             <div class="footer__top">
                 <div class="footer__brand">
-                    <img src="images/ICW- Kannur.png" alt="Indian Coffee House" class="footer__mark" loading="lazy" decoding="async" />
+                    <img src="images/ICW- Kannur.png" alt="Indian Coffee House" class="footer__mark" loading="lazy" decoding="async" width="420" height="420"/>
                     <div>
                         <div class="footer__name">Indian Coffee House Kannur</div>
                         <div class="footer__sub">Indian Coffee Workers Co-operative Society Ltd. No. 4317 · Est. 1958
@@ -312,7 +310,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.min.js" defer></script>
 </body>
 
 </html>
