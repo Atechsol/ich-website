@@ -138,7 +138,7 @@ function initCarousel(trackId) {
     applyOffset();
 }
 
-['committee-track', 'branch-track', 'places-track'].forEach(initCarousel);
+['committee-track', 'places-track'].forEach(initCarousel);
 
 /* ============================================================
    MENU TABS (menu page)
