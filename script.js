@@ -35,6 +35,13 @@ if (burger && navMobile) {
             navMobile.classList.remove('open');
         })
     );
+
+    document.addEventListener('click', (e) => {
+        if (!navMobile.classList.contains('open')) return;
+        if (nav.contains(e.target)) return;
+        burger.classList.remove('open');
+        navMobile.classList.remove('open');
+    });
 }
 
 /* ============================================================
@@ -229,7 +236,7 @@ if (hero) {
         // into its left-aligned resting spot exactly as card 1 finishes
         // sliding in — only then does the animation move on to card 2.
         const clamp01 = v => Math.min(Math.max(v, 0), 1);
-        const t0 = 0, t1 = 0.12, t2 = 0.55, t3 = 0.65;
+        const t0 = 0, t1 = 0.18, t2 = 0.68, t3 = 0.95;
         const rise1 = clamp01((progress - t0) / (t1 - t0));
         hero.style.setProperty('--hero-progress', progress);
         hero.style.setProperty('--hero-reveal', rise1);
@@ -290,25 +297,4 @@ if (hero) {
         document.fonts.ready.then(onResize);
     }
 
-}
-
-/* ============================================================
-   CONTACT FORM
-============================================================ */
-const form = document.getElementById('contactForm');
-if (form) {
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        const btn = form.querySelector('button[type="submit"]');
-        const orig = btn.innerHTML;
-        btn.innerHTML = 'Message Sent <i class="fa-solid fa-check"></i>';
-        btn.style.background = '#2d6a4f';
-        btn.disabled = true;
-        setTimeout(() => {
-            btn.innerHTML = orig;
-            btn.style.background = '';
-            btn.disabled = false;
-            form.reset();
-        }, 3500);
-    });
 }

@@ -254,6 +254,19 @@ img {
 
 .nav__cta--mobile {
     display: none;
+    border-radius: 14px;
+    background: rgba(17, 17, 17, .82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, .12);
+    box-shadow: 0 8px 24px rgba(17, 17, 17, .18);
+    -webkit-tap-highlight-color: transparent;
+    transition: background .2s, transform .2s;
+}
+
+.nav__cta--mobile:active {
+    background: rgba(17, 17, 17, .95);
+    transform: scale(.98);
 }
 
 .nav__burger {
@@ -305,6 +318,7 @@ img {
     border-radius: 8px;
     text-shadow: 0 1px 3px rgba(255, 255, 255, .3);
     transition: background .2s, color .2s;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .nav__mobile a:hover {
@@ -541,7 +555,7 @@ img {
     /* Smooths out choppy wheel/trackpad scroll deltas — the underlying
        progress is still 100% scroll-driven, this just eases each step
        instead of snapping straight to it. */
-    transition: opacity .6s var(--ease), transform .6s var(--ease);
+    transition: opacity .9s var(--ease), transform .9s var(--ease);
 }
 
 .hero__reel-item:nth-child(1) {
@@ -628,18 +642,14 @@ img {
 }
 
 .hero__stats {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0;
-    background: rgba(255, 255, 255, .6);
-    backdrop-filter: blur(12px);
+    background: var(--offwhite);
     border-top: 1px solid var(--border-l);
+    border-bottom: 1px solid var(--border-l);
 }
 
 .hero__stat {
@@ -1132,6 +1142,8 @@ img {
 }
 
 .fac__card {
+    display: flex;
+    flex-direction: column;
     padding: 2.5rem 2rem;
     border-right: 1px solid var(--border-l);
     border-bottom: 1px solid var(--border-l);
@@ -1210,6 +1222,8 @@ img {
     color: var(--gold-dk);
     text-transform: uppercase;
     transition: gap .22s;
+    margin-top: auto;
+    padding-top: 1.2rem;
 }
 
 .fac__link:hover {
@@ -1479,6 +1493,7 @@ img {
 .carousel__vp {
     overflow: hidden;
     flex: 1;
+    min-width: 0;
 }
 
 .carousel__track {
@@ -1761,23 +1776,49 @@ img {
 .products__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 1.75rem;
 }
 
 .product-card {
-    border: 1px dashed var(--border-l);
-    border-radius: 14px;
-    padding: 3rem 2rem;
-    text-align: center;
+    display: block;
+    border: 1px solid var(--border-l);
+    border-radius: 16px;
+    overflow: hidden;
     background: var(--white);
-    color: var(--muted);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
 }
 
-.product-card i {
-    font-size: 1.6rem;
-    color: var(--red);
-    margin-bottom: 1rem;
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(17, 17, 17, .12);
+}
+
+.product-card__media {
+    aspect-ratio: 3 / 4;
+    background: var(--cream2);
+    overflow: hidden;
+}
+
+.product-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     display: block;
+    /* Zoomed in a bit past a plain "contain" fit — shrinks the
+       letterbox bars from the images' varying portrait ratios,
+       trading a small crop at the outer edges for less empty
+       matting around the poster. */
+    transform: scale(1.18);
+    transition: transform .4s var(--ease);
+}
+
+.product-card:hover .product-card__media img {
+    transform: scale(1.24);
+}
+
+.product-card__body {
+    padding: 1.6rem 1.5rem 1.8rem;
+    text-align: center;
 }
 
 .product-card h3 {
@@ -1789,7 +1830,8 @@ img {
 }
 
 .product-card p {
-    font-size: .8rem;
+    font-size: .82rem;
+    color: var(--muted);
     line-height: 1.7;
 }
 
@@ -1797,10 +1839,7 @@ img {
    CONTACT
 ============================================================ */
 .contact__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: start;
+    max-width: 480px;
 }
 
 .contact__info {
@@ -1862,58 +1901,6 @@ img {
     background: var(--gold);
     border-color: var(--gold);
     color: var(--dark);
-}
-
-.contact__form {
-    background: rgba(255, 255, 255, .6);
-    border: 1px solid var(--border-l);
-    border-radius: 14px;
-    padding: 2.5rem;
-}
-
-.form__group {
-    margin-bottom: 1rem;
-}
-
-.form__group input,
-.form__group select,
-.form__group textarea {
-    width: 100%;
-    padding: .85rem 1rem;
-    background: rgba(255, 255, 255, .85);
-    border: 1px solid rgba(17, 17, 17, .16);
-    border-radius: 9px;
-    font-family: var(--sans);
-    font-size: .82rem;
-    color: var(--dark);
-    outline: none;
-    transition: border-color .18s, box-shadow .18s;
-}
-
-.form__group input::placeholder,
-.form__group textarea::placeholder {
-    color: rgba(17, 17, 17, .35);
-}
-
-.form__group select {
-    color: rgba(17, 17, 17, .55);
-}
-
-.form__group select option {
-    background: var(--white);
-    color: var(--dark);
-}
-
-.form__group input:focus,
-.form__group select:focus,
-.form__group textarea:focus {
-    border-color: var(--red);
-    box-shadow: 0 0 0 3px rgba(186, 17, 12, .15);
-}
-
-.form__group textarea {
-    resize: vertical;
-    min-height: 110px;
 }
 
 /* ============================================================
@@ -2228,11 +2215,6 @@ img {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .contact__grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-
     .footer__top {
         flex-direction: column;
         gap: 2.5rem;
@@ -2240,14 +2222,6 @@ img {
 
     .other__grid {
         grid-template-columns: repeat(3, 1fr);
-    }
-
-    .hero__stats {
-        position: relative;
-    }
-
-    .hero {
-        padding-bottom: 0;
     }
 
     .hero__stat {
@@ -2284,6 +2258,22 @@ img {
         padding: .5rem .55rem;
         font-size: .74rem;
     }
+
+    .nav__inner {
+        padding: 0 2rem;
+    }
+
+    .wrap {
+        padding: 0 2.5rem;
+    }
+
+    .hero__content {
+        padding: 0 2.5rem;
+    }
+
+    .pagehero__content {
+        padding: 0 2.5rem;
+    }
 }
 
 /* ============================================================
@@ -2293,13 +2283,13 @@ img {
 
     .nav__links--left,
     .nav__links--right,
-    .nav__cta--desktop {
+    .nav__cta--desktop,
+    .nav__right-group {
         display: none;
     }
 
     .nav__inner {
         grid-template-columns: 1fr auto;
-        justify-content: space-between;
     }
 
     .nav__logo-center {
@@ -2337,13 +2327,9 @@ img {
         text-align: center;
     }
 
-    .hero__left,
-    .hero__right {
+    .hero__left {
         transform: none;
         opacity: 1;
-    }
-
-    .hero__left {
         max-width: 100%;
         text-align: center;
         justify-self: center;
@@ -2352,10 +2338,32 @@ img {
 
     .hero__actions {
         justify-content: center;
+        margin-bottom: 2.5rem;
     }
 
-    .hero__reel {
-        height: 280px;
+    /* No scroll-jack on mobile, so the "Scroll" cue has nothing to hint at. */
+    .hero__scroll {
+        display: none;
+    }
+
+    /* On mobile the 3-card reel is dropped in favour of the first hero
+       photo as a blurred full-bleed backdrop behind the text itself. */
+    .hero__right {
+        display: none;
+    }
+
+    .hero__bg {
+        background: url('images/hero1.jpg') center/cover no-repeat;
+        filter: blur(9px);
+        transform: scale(1.1);
+    }
+
+    .hero__bg::after {
+        display: none;
+    }
+
+    .hero__overlay {
+        background: rgba(245, 241, 236, .74);
     }
 
     .hero__title {
@@ -2363,15 +2371,6 @@ img {
     }
 
     .hero__stats {
-        flex-wrap: wrap;
-    }
-
-    .hero__stat {
-        flex: 1 1 40%;
-        padding: 1rem;
-    }
-
-    .hero__stat-div {
         display: none;
     }
 
@@ -2395,17 +2394,46 @@ img {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .footer__top {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer__brand {
+        flex-direction: column;
+        align-items: center;
+        max-width: 100%;
+    }
+
     .footer__nav {
         flex-wrap: wrap;
+        justify-content: center;
         gap: 2rem;
+        width: 100%;
+    }
+
+    .footer__col {
+        align-items: center;
     }
 
     .place {
-        min-width: 250px;
+        flex: 0 0 100%;
+        min-width: 0;
+        padding: 1.6rem;
     }
 
     .member {
         min-width: 140px;
+    }
+
+    .carousel__wrap {
+        gap: .75rem;
+    }
+
+    .carousel__btn {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
     }
 
     .hero__actions,
