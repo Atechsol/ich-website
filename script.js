@@ -221,16 +221,19 @@ if (hero) {
     // Runs inside rAF: only WRITES custom properties, no layout reads.
     function applyProgress() {
         const progress = Math.min(Math.max((window.scrollY - heroTop) / scrollRange, 0), 1);
-        const reveal = Math.min(progress / 0.4, 1);
-        hero.style.setProperty('--hero-progress', progress);
-        hero.style.setProperty('--hero-reveal', reveal);
 
         // 3-card crossfade with a hold in between each transition, so cards
         // don't fade the instant they finish sliding in — quick crossfade,
-        // long hold, quick crossfade, long hold to the end.
+        // long hold, quick crossfade, long hold to the end. The text column
+        // shares card 1's entrance window (t0 -> t1) so it finishes settling
+        // into its left-aligned resting spot exactly as card 1 finishes
+        // sliding in — only then does the animation move on to card 2.
         const clamp01 = v => Math.min(Math.max(v, 0), 1);
         const t0 = 0, t1 = 0.12, t2 = 0.55, t3 = 0.65;
         const rise1 = clamp01((progress - t0) / (t1 - t0));
+        hero.style.setProperty('--hero-progress', progress);
+        hero.style.setProperty('--hero-reveal', rise1);
+
         const fall1 = clamp01((t3 - progress) / (t3 - t2));
         const c0 = clamp01((t1 - progress) / (t1 - t0));
         const c1 = Math.min(rise1, fall1);
