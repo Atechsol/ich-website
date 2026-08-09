@@ -1608,8 +1608,8 @@ img {
 
 .branch-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
 }
 
 .branch-card {
@@ -2242,10 +2242,6 @@ img {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .branch-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
     .hero__stats {
         position: relative;
     }
@@ -2468,5 +2464,24 @@ img {
 
     .book__amenities {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================
+   TOUCH FALLBACK — no hover on touch devices, so don't gate card
+   details behind an interaction that doesn't exist there. Placed
+   last so it wins the cascade over each card's own :hover rule
+   regardless of where those are defined earlier in the file.
+============================================================ */
+@media (hover: none), (max-width: 860px) {
+
+    .branch-card__overlay,
+    .dish-card__overlay {
+        opacity: 1;
+    }
+
+    .branch-card img,
+    .dish-card img {
+        filter: blur(1px) brightness(.55);
     }
 }
