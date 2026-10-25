@@ -29,7 +29,7 @@
         <img src="images/ICW- Kannur.png" alt="" class="page-loader__mark" />
     </div>
 
-    <nav class="nav" id="nav">
+    <nav class="nav nav--hero" id="nav">
         <div class="nav__inner">
             <ul class="nav__links nav__links--left">
                 <li><a href="menu.html">Menu</a></li>
@@ -71,46 +71,45 @@
     </nav>
 
     <!-- ── HERO ───────────────────────────────────── -->
-    <section class="hero hero--static" id="home">
-        <div class="hero__pin" id="heroPin">
-            <div class="hero__bg">
-                <div class="hero__overlay"></div>
+    <section class="hero" id="home">
+        <!-- To change the hero photos, replace images/hero-section0.* (blurred backdrop)
+             and images/hero-section1.* (revealed under the cursor); keep both .jpg and .webp. -->
+        <div class="hero__media" aria-hidden="true">
+            <picture class="hero__layer hero__layer--base">
+                <source srcset="images/hero-section0.webp" type="image/webp" />
+                <img src="images/hero-section0.jpg" alt="" fetchpriority="high" decoding="async" />
+            </picture>
+            <picture class="hero__layer hero__layer--soft">
+                <source srcset="images/hero-section1.webp" type="image/webp" />
+                <img src="images/hero-section1.jpg" alt="" decoding="async" />
+            </picture>
+            <picture class="hero__layer hero__layer--reveal">
+                <source srcset="images/hero-section1.webp" type="image/webp" />
+                <img src="images/hero-section1.jpg" alt="" decoding="async" />
+            </picture>
+            <div class="hero__overlay"></div>
+        </div>
+        <div class="hero__content">
+            <p class="hero__eyebrow">Kerala's Most Beloved Co-operative · Since 1958</p>
+            <h1 class="hero__title">Indian<br /><em>Coffee House</em></h1>
+            <p class="hero__sub">Tradition, taste &amp; warmth — at the heart of Malabar for over six decades.</p>
+            <div class="hero__actions">
+                <a href="menu.html" class="btn btn--gold">Explore Menu</a>
+                <a href="facilities.html" class="btn btn--ghost">Our Facilities</a>
             </div>
-            <div class="hero__content">
-                <div class="hero__left">
-                    <p class="hero__eyebrow">Kerala's Most Beloved Co-operative · Since 1958</p>
-                    <h1 class="hero__title">Indian<br /><em>Coffee House</em></h1>
-                    <p class="hero__sub">Tradition, taste &amp; warmth — at the heart of Malabar for over six decades.</p>
-                    <div class="hero__actions">
-                        <a href="menu.html" class="btn btn--gold">Explore Menu</a>
-                        <a href="facilities.html" class="btn btn--ghost">Our Facilities</a>
-                    </div>
-                </div>
-                <div class="hero__right">
-                    <div class="hero__reel" id="heroReel">
-                        <div class="hero__reel-item"><img src="images/hero1.jpg" alt="Indian Coffee House branch storefront" /></div>
-                        <div class="hero__reel-item"><img src="images/hero2.jpg" alt="Indian Coffee House branch storefront" /></div>
-                        <div class="hero__reel-item"><img src="images/hero3.jpg" alt="Indian Coffee House branch storefront" /></div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero__scroll">
-                <span class="hero__scroll-line"></span>
-                <span class="hero__scroll-text">Scroll</span>
-            </div>
-            <div class="hero__stats">
-                <div class="hero__stat"><span class="hero__stat-n" data-target="30">0</span><span
-                        class="hero__stat-l">Branches</span></div>
-                <div class="hero__stat-div"></div>
-                <div class="hero__stat"><span class="hero__stat-n" data-target="670">0</span><span
-                        class="hero__stat-l">Employees</span></div>
-                <div class="hero__stat-div"></div>
-                <div class="hero__stat"><span class="hero__stat-n" data-target="65">0</span><span
-                        class="hero__stat-l">Years</span></div>
-                <div class="hero__stat-div"></div>
-                <div class="hero__stat"><span class="hero__stat-n" data-target="6">0</span><span
-                        class="hero__stat-l">Districts</span></div>
-            </div>
+        </div>
+        <div class="hero__stats">
+            <div class="hero__stat"><span class="hero__stat-n" data-target="30">0</span><span
+                    class="hero__stat-l">Branches</span></div>
+            <div class="hero__stat-div"></div>
+            <div class="hero__stat"><span class="hero__stat-n" data-target="670">0</span><span
+                    class="hero__stat-l">Employees</span></div>
+            <div class="hero__stat-div"></div>
+            <div class="hero__stat"><span class="hero__stat-n" data-target="65">0</span><span
+                    class="hero__stat-l">Years</span></div>
+            <div class="hero__stat-div"></div>
+            <div class="hero__stat"><span class="hero__stat-n" data-target="6">0</span><span
+                    class="hero__stat-l">Districts</span></div>
         </div>
     </section>
 
@@ -218,40 +217,82 @@
         </div>
     </section>
 
-    <!-- ── MENU TEASER ────────────────────────────── -->
-    <section class="section section--dark section--tight" id="menu-teaser">
+    <!-- ── SIGNATURE DISHES ───────────────────────── -->
+    <section class="section section--tight sig" id="menu-teaser">
         <div class="wrap">
             <div class="sec-head reveal">
-                <p class="tag tag--light">A Taste of What's Inside</p>
-                <h2 class="heading heading--light">Signature<br /><em>Dishes</em></h2>
+                <p class="tag">A Taste of What's Inside</p>
+                <h2 class="heading">Signature <em>Dishes</em></h2>
             </div>
-            <div class="menuteaser__grid">
-                <div class="menuteaser__item reveal">
-                    <h4>Ghee Dosa</h4>
-                    <span class="menuteaser__tag menuteaser__tag--veg">Veg</span>
-                </div>
-                <div class="menuteaser__item reveal">
-                    <h4>Veg Biriyani</h4>
-                    <span class="menuteaser__tag menuteaser__tag--veg">Veg</span>
-                </div>
-                <div class="menuteaser__item reveal">
-                    <h4>Puttu</h4>
-                    <span class="menuteaser__tag menuteaser__tag--veg">Veg</span>
-                </div>
-                <div class="menuteaser__item reveal">
-                    <h4>Chicken Biriyani</h4>
-                    <span class="menuteaser__tag menuteaser__tag--nonveg">Non-Veg</span>
-                </div>
-                <div class="menuteaser__item reveal">
-                    <h4>Butter Chicken</h4>
-                    <span class="menuteaser__tag menuteaser__tag--nonveg">Non-Veg</span>
-                </div>
-                <div class="menuteaser__item reveal">
-                    <h4>Chicken 65</h4>
-                    <span class="menuteaser__tag menuteaser__tag--nonveg">Non-Veg</span>
-                </div>
+            <div class="sig-grid">
+                <article class="sig-card reveal">
+                    <picture class="sig-card__media">
+                        <source srcset="images/dishes/ghee-roast.webp" type="image/webp" />
+                        <img src="images/dishes/ghee-roast.jpg" alt="Ghee Dosa" width="800" height="640" loading="lazy" decoding="async" />
+                    </picture>
+                    <div class="sig-card__body">
+                        <h3 class="sig-card__name">Ghee Dosa</h3>
+                        <p class="sig-card__desc">Crisp, golden &amp; roasted in ghee</p>
+                        <span class="sig-card__tag sig-card__tag--veg">Veg</span>
+                    </div>
+                </article>
+                <article class="sig-card reveal">
+                    <picture class="sig-card__media">
+                        <source srcset="images/dishes/veg-biriyani.webp" type="image/webp" />
+                        <img src="images/dishes/veg-biriyani.jpg" alt="Veg Biriyani" width="800" height="640" loading="lazy" decoding="async" />
+                    </picture>
+                    <div class="sig-card__body">
+                        <h3 class="sig-card__name">Veg Biriyani</h3>
+                        <p class="sig-card__desc">Fragrant rice with garden vegetables</p>
+                        <span class="sig-card__tag sig-card__tag--veg">Veg</span>
+                    </div>
+                </article>
+                <article class="sig-card reveal">
+                    <picture class="sig-card__media">
+                        <source srcset="images/dishes/puttu.webp" type="image/webp" />
+                        <img src="images/dishes/puttu.jpg" alt="Puttu" width="800" height="640" loading="lazy" decoding="async" />
+                    </picture>
+                    <div class="sig-card__body">
+                        <h3 class="sig-card__name">Puttu</h3>
+                        <p class="sig-card__desc">Steamed rice cylinders, Kerala style</p>
+                        <span class="sig-card__tag sig-card__tag--veg">Veg</span>
+                    </div>
+                </article>
+                <article class="sig-card reveal">
+                    <picture class="sig-card__media">
+                        <source srcset="images/dishes/chicken-biriyani.webp" type="image/webp" />
+                        <img src="images/dishes/chicken-biriyani.jpg" alt="Chicken Biriyani" width="800" height="640" loading="lazy" decoding="async" />
+                    </picture>
+                    <div class="sig-card__body">
+                        <h3 class="sig-card__name">Chicken Biriyani</h3>
+                        <p class="sig-card__desc">Malabar-style, slow-cooked dum</p>
+                        <span class="sig-card__tag sig-card__tag--nonveg">Non-Veg</span>
+                    </div>
+                </article>
+                <article class="sig-card reveal">
+                    <picture class="sig-card__media">
+                        <source srcset="images/dishes/butter-chicken.webp" type="image/webp" />
+                        <img src="images/dishes/butter-chicken.jpg" alt="Butter Chicken" width="800" height="640" loading="lazy" decoding="async" />
+                    </picture>
+                    <div class="sig-card__body">
+                        <h3 class="sig-card__name">Butter Chicken</h3>
+                        <p class="sig-card__desc">Rich, creamy tomato gravy</p>
+                        <span class="sig-card__tag sig-card__tag--nonveg">Non-Veg</span>
+                    </div>
+                </article>
+                <article class="sig-card reveal">
+                    <picture class="sig-card__media">
+                        <source srcset="images/dishes/chicken-65.webp" type="image/webp" />
+                        <img src="images/dishes/chicken-65.jpg" alt="Chicken 65" width="800" height="640" loading="lazy" decoding="async" />
+                    </picture>
+                    <div class="sig-card__body">
+                        <h3 class="sig-card__name">Chicken 65</h3>
+                        <p class="sig-card__desc">Spicy, crisp &amp; freshly fried</p>
+                        <span class="sig-card__tag sig-card__tag--nonveg">Non-Veg</span>
+                    </div>
+                </article>
             </div>
-            <p style="text-align:center;margin-top:2.2rem">
+            <p style="text-align:center;margin-top:2.6rem">
                 <a href="menu.html" class="btn btn--gold">View Full Menu</a>
             </p>
         </div>
@@ -304,7 +345,10 @@
         <div class="footer__inner">
             <div class="footer__top">
                 <div class="footer__brand">
-                    <div class="footer__society">Indian Coffee Workers Co-operative Society Ltd. <strong>No. 4317</strong> · Est. 1958</div>
+                    <picture>
+                        <source srcset="images/footer-banner.webp" type="image/webp" />
+                        <img src="images/footer-banner.png" alt="Indian Coffee House, est. 1958 — Indian Coffee Workers' Co-operative Society Ltd, No. 4317, Kannur-2" class="footer__banner" width="2000" height="445" loading="lazy" decoding="async" />
+                    </picture>
                 </div>
                 <div class="footer__nav">
                     <div class="footer__col">
@@ -325,11 +369,11 @@
                         <a href="menu.html">Veg Restaurant</a>
                         <a href="menu.html">Non-Veg Restaurant</a>
                     </div>
-                    <div class="footer__col">
+                    <div class="footer__col footer__col--contact">
                         <h5>Contact</h5>
-                        <span>0497-2761367</span>
-                        <span>ichknr@gmail.com</span>
-                        <span>South Bazar, Kannur – 2</span>
+                        <a href="tel:+914972761367"><i class="fa-solid fa-phone"></i>0497-2761367</a>
+                        <a href="mailto:ichknr@gmail.com"><i class="fa-solid fa-envelope"></i>ichknr@gmail.com</a>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=Indian+Coffee+House+South+Bazar+Kannur" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i>South Bazar, Kannur – 2</a>
                     </div>
                 </div>
             </div>

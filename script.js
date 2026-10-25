@@ -192,109 +192,92 @@ document.querySelectorAll('.reveal-call').forEach(btn => {
 });
 
 /* ============================================================
-   HERO SCROLL-DRIVEN ANIMATION (home page only)
-   Desktop + motion-safe: pins the hero for 200vh of scroll and drives
-   --hero-progress / --hero-reveal custom properties read by style.css.
-   Mobile (<861px) and prefers-reduced-motion: listener never attaches;
-   style.css alone forces the static two-column layout in both cases.
+   HERO HOVER MASK (home page only)
+   A sharp photo is revealed through a feathered mask that eases
+   after the pointer over a muted base photo. Fine pointers: follows the
+   cursor and grows on enter / shrinks on leave. Touch: the mask drifts
+   on its own. prefers-reduced-motion: style.css hides the reveal layer
+   and this block never attaches.
 ============================================================ */
 const hero = document.getElementById('home');
 
-if (hero) {
-    const heroContentEl = hero.querySelector('.hero__content');
-    const heroLeftEl = hero.querySelector('.hero__left');
-    const desktopMq = window.matchMedia('(min-width: 861px)');
-    const motionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+if (hero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const lerp = (a, b, t) => a + (b - a) * t;
 
-    // Cached once on load/resize — never read inside the scroll handler.
-    let heroTop = 0;
-    let scrollRange = 0;
-    let ticking = false;
+    let maskSize = 0;
+    let tx = 0, ty = 0, x = 0, y = 0, r = 0, tr = 0;
+    let running = false;
+    let visible = true;
+    let drift = !finePointer;
 
     function measure() {
         const rect = hero.getBoundingClientRect();
-        heroTop = rect.top + window.scrollY;
-        scrollRange = Math.max(1, hero.offsetHeight - window.innerHeight);
+        maskSize = Math.max(130, Math.min(rect.width, rect.height) * 0.34);
+        if (drift) tr = maskSize * 0.9;
+    }
 
-        // How far --hero-left needs to shift right (from its resting left-edge
-        // position) to look centered over the full content width at scroll
-        // start. Measured once here, never inside the scroll/rAF loop.
-        if (heroContentEl && heroLeftEl) {
-            const centerOffset = Math.max(0, (heroContentEl.clientWidth - heroLeftEl.offsetWidth) / 2);
-            hero.style.setProperty('--hero-center-offset', centerOffset + 'px');
+    function paint() {
+        hero.style.setProperty('--mx', x.toFixed(1) + 'px');
+        hero.style.setProperty('--my', y.toFixed(1) + 'px');
+        hero.style.setProperty('--mask-r', r.toFixed(1) + 'px');
+    }
+
+    function frame(now) {
+        if (drift) {
+            const t = now / 1000;
+            const rect = hero.getBoundingClientRect();
+            tx = rect.width * (0.5 + 0.28 * Math.sin(t * 0.45));
+            ty = rect.height * (0.45 + 0.22 * Math.sin(t * 0.62 + 1.2));
         }
-    }
+        x = lerp(x, tx, 0.14);
+        y = lerp(y, ty, 0.14);
+        r = lerp(r, tr, 0.12);
+        paint();
 
-    // Runs inside rAF: only WRITES custom properties, no layout reads.
-    function applyProgress() {
-        const progress = Math.min(Math.max((window.scrollY - heroTop) / scrollRange, 0), 1);
-
-        // 3-card crossfade with a hold in between each transition, so cards
-        // don't fade the instant they finish sliding in — quick crossfade,
-        // long hold, quick crossfade, long hold to the end. The text column
-        // shares card 1's entrance window (t0 -> t1) so it finishes settling
-        // into its left-aligned resting spot exactly as card 1 finishes
-        // sliding in — only then does the animation move on to card 2.
-        const clamp01 = v => Math.min(Math.max(v, 0), 1);
-        const t0 = 0, t1 = 0.18, t2 = 0.68, t3 = 0.95;
-        const rise1 = clamp01((progress - t0) / (t1 - t0));
-        hero.style.setProperty('--hero-progress', progress);
-        hero.style.setProperty('--hero-reveal', rise1);
-
-        const fall1 = clamp01((t3 - progress) / (t3 - t2));
-        const c0 = clamp01((t1 - progress) / (t1 - t0));
-        const c1 = Math.min(rise1, fall1);
-        const c2 = clamp01((progress - t2) / (t3 - t2));
-        hero.style.setProperty('--card0-opacity', c0);
-        hero.style.setProperty('--card1-opacity', c1);
-        hero.style.setProperty('--card2-opacity', c2);
-        hero.style.setProperty('--card1-y', (70 * (1 - rise1)).toFixed(2));
-        hero.style.setProperty('--card2-y', (70 * (1 - c2)).toFixed(2));
-
-        ticking = false;
-    }
-
-    function onScroll() {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(applyProgress);
-    }
-
-    function onResize() {
-        if (desktopMq.matches && !motionMq.matches) measure();
-    }
-
-    function syncMode() {
-        const active = desktopMq.matches && !motionMq.matches;
-        hero.classList.toggle('hero--static', !active);
-
-        if (active) {
-            measure();
-            window.addEventListener('scroll', onScroll, { passive: true });
-            applyProgress();
-        } else {
-            window.removeEventListener('scroll', onScroll);
-            ticking = false;
-            hero.style.removeProperty('--hero-progress');
-            hero.style.removeProperty('--hero-reveal');
-            hero.style.removeProperty('--card0-opacity');
-            hero.style.removeProperty('--card1-opacity');
-            hero.style.removeProperty('--card2-opacity');
-            hero.style.removeProperty('--card1-y');
-            hero.style.removeProperty('--card2-y');
+        const settled = !drift && Math.abs(x - tx) < 0.2 && Math.abs(y - ty) < 0.2 && Math.abs(r - tr) < 0.2;
+        if (settled || !visible) {
+            running = false;
+            return;
         }
+        requestAnimationFrame(frame);
     }
 
-    syncMode();
-    desktopMq.addEventListener('change', syncMode);
-    motionMq.addEventListener('change', syncMode);
-    window.addEventListener('resize', onResize, { passive: true });
-    window.addEventListener('orientationchange', onResize);
-
-    // Web font swap can change hero__title's measured width after first paint —
-    // re-measure once (not a scroll-loop read) so the center offset stays accurate.
-    if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(onResize);
+    function kick() {
+        if (running || !visible) return;
+        running = true;
+        requestAnimationFrame(frame);
     }
 
+    if (finePointer) {
+        hero.addEventListener('pointermove', e => {
+            const rect = hero.getBoundingClientRect();
+            tx = e.clientX - rect.left;
+            ty = e.clientY - rect.top;
+            if (r < 1) { x = tx; y = ty; }
+            tr = maskSize;
+            kick();
+        }, { passive: true });
+
+        hero.addEventListener('pointerleave', () => {
+            tr = 0;
+            kick();
+        });
+    }
+
+    measure();
+    window.addEventListener('resize', () => { measure(); kick(); }, { passive: true });
+
+    // Pause the loop while the hero is scrolled out of view.
+    new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible) kick();
+    }).observe(hero);
+
+    if (drift) {
+        x = tx = hero.clientWidth / 2;
+        y = ty = hero.clientHeight / 2;
+        kick();
+    }
 }
+
