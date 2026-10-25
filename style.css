@@ -1978,54 +1978,208 @@ img {
 }
 
 /* ============================================================
-   EXPLORE GRID (home page — links to all pages)
+   EXPLORE (home page) — three photo destinations + compact quick links
 ============================================================ */
-.explore__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
+.explore .sec-head {
+    max-width: none;
+    margin-bottom: 3rem;
+    text-align: center;
 }
 
-.explore__card {
+.explore__feature,
+.explore__links {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.explore__feature {
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 1.5rem;
+}
+
+.explore__card--photo {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
-    padding: 2.3rem 1.9rem;
-    border: 1px solid var(--border-l);
+    justify-content: flex-end;
+    aspect-ratio: 4 / 5;
     border-radius: 18px;
-    background: rgba(255, 255, 255, .6);
-    transition: background .25s, transform .25s, border-color .25s;
+    overflow: hidden;
+    isolation: isolate;
+    color: var(--white);
+    background: var(--dark);
+    box-shadow: 0 1px 2px rgba(17, 17, 17, .06), 0 12px 30px rgba(17, 17, 17, .12);
+    transition: transform .35s var(--ease), box-shadow .35s var(--ease);
 }
 
-.explore__card:hover {
-    background: rgba(201, 169, 110, .07);
-    border-color: var(--gold);
-    transform: translateY(-3px);
+.explore__card--photo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 2px 4px rgba(17, 17, 17, .08), 0 22px 46px rgba(17, 17, 17, .2);
 }
 
-.explore__card i {
-    width: 48px;
-    height: 48px;
+.explore__card--photo picture,
+.explore__card--photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.explore__card--photo img {
+    object-fit: cover;
+    transition: transform .7s var(--ease);
+}
+
+.explore__card--photo:hover img {
+    transform: scale(1.06);
+}
+
+.explore__card--photo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(0, 0, 0, .05) 30%, rgba(0, 0, 0, .8) 100%);
+}
+
+.explore__body {
+    padding: 1.6rem 1.7rem;
+    padding-right: 4rem;
+}
+
+.explore__kicker {
+    display: block;
+    margin-bottom: .45rem;
+    font-size: .62rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #f0d9a0;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, .5);
+}
+
+.explore__body h4 {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1.1;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, .5);
+}
+
+.explore__body p {
+    margin-top: .4rem;
+    font-size: .8rem;
+    color: rgba(255, 255, 255, .88);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, .5);
+}
+
+.explore__arrow {
+    position: absolute;
+    right: 1.4rem;
+    bottom: 1.5rem;
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    color: var(--white);
+    background: rgba(255, 255, 255, .16);
+    border: 1px solid rgba(255, 255, 255, .4);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: background-color .25s, color .25s, transform .25s var(--ease);
+}
+
+.explore__arrow svg {
+    width: 1.05rem;
+    height: 1.05rem;
+}
+
+.explore__card--photo:hover .explore__arrow {
+    background: var(--white);
+    color: var(--red);
+    transform: translate(2px, -2px);
+}
+
+.explore__links {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.explore__link {
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    background: rgba(201, 169, 110, .12);
-    font-size: 1.35rem;
-    color: var(--gold-dk);
+    gap: .9rem;
+    padding: .9rem 1rem;
+    background: var(--white);
+    border: 1px solid var(--border-l);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(17, 17, 17, .04);
+    transition: transform .25s var(--ease), border-color .25s, box-shadow .25s;
 }
 
-.explore__card h4 {
+.explore__link:hover {
+    transform: translateY(-2px);
+    border-color: rgba(186, 17, 12, .35);
+    box-shadow: 0 8px 20px rgba(17, 17, 17, .07);
+}
+
+.explore__icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 12px;
+    color: var(--red);
+    background: rgba(186, 17, 12, .05);
+    border: 1px solid rgba(186, 17, 12, .16);
+    transition: background-color .25s, border-color .25s;
+}
+
+.explore__icon svg {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.explore__link:hover .explore__icon {
+    background: rgba(186, 17, 12, .1);
+    border-color: rgba(186, 17, 12, .32);
+}
+
+.explore__link h4 {
     font-family: var(--serif);
-    font-size: 1.3rem;
-    font-weight: 400;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
     color: var(--dark);
 }
 
-.explore__card span {
-    font-size: .85rem;
-    color: rgba(17, 17, 17, .55);
-    line-height: 1.6;
+.explore__link div span {
+    display: block;
+    margin-top: .1rem;
+    font-size: .72rem;
+    line-height: 1.4;
+    color: var(--muted);
+}
+
+.explore__link-arrow {
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+    margin-left: auto;
+    color: rgba(17, 17, 17, .3);
+    transition: color .25s, transform .25s var(--ease);
+}
+
+.explore__link:hover .explore__link-arrow {
+    color: var(--red);
+    transform: translateX(3px);
 }
 
 /* ============================================================
@@ -2228,8 +2382,8 @@ img {
         grid-template-columns: 1fr 1fr;
     }
 
-    .explore__grid {
-        grid-template-columns: repeat(3, 1fr);
+    .explore__links {
+        grid-template-columns: 1fr 1fr;
     }
 
     .sig-grid {
@@ -2333,12 +2487,9 @@ img {
     }
 
     .footer__nav {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, auto);
+        justify-content: space-between;
         gap: 2rem 1.5rem;
-    }
-
-    .footer__col--contact {
-        grid-column: 1 / -1;
     }
 
     .footer__col--contact a {
@@ -2388,12 +2539,8 @@ img {
         grid-template-columns: 1fr;
     }
 
-    .explore__grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
     .sig-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     .cta-banner__actions {
@@ -2403,7 +2550,7 @@ img {
 }
 
 @media(max-width:480px) {
-    .explore__grid {
+    .explore__links {
         grid-template-columns: 1fr;
     }
 
@@ -2475,5 +2622,105 @@ img {
 
     .branch-card__overlay a {
         color: var(--gold-dk);
+    }
+}
+
+/* ============================================================
+   RESPONSIVE REFINEMENTS (explore / dishes / footer / burger)
+============================================================ */
+/* The mobile burger needs all three bars to form a clean X. */
+.nav__burger.open span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+
+.nav__burger.open span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+.nav__burger.open span:nth-child(2) {
+    transform: none;
+}
+
+/* Tablet: keep the three photo cards side by side, just tighter. */
+@media (max-width: 860px) {
+    .explore__feature {
+        gap: 1rem;
+    }
+
+    .explore__card--photo {
+        aspect-ratio: 3 / 4;
+    }
+
+    .explore__body {
+        padding: 1.1rem 1.1rem;
+        padding-right: 3.2rem;
+    }
+
+    .explore__body h4 {
+        font-size: 1.3rem;
+    }
+
+    .explore__body p {
+        font-size: .72rem;
+    }
+
+    .explore__arrow {
+        right: .9rem;
+        bottom: 1rem;
+        width: 2.1rem;
+        height: 2.1rem;
+    }
+}
+
+/* Phones: one column of wide photo cards, one column of dishes. */
+@media (max-width: 600px) {
+    .explore__feature {
+        grid-template-columns: 1fr;
+    }
+
+    .explore__card--photo {
+        aspect-ratio: 16 / 11;
+    }
+
+    .explore__body {
+        padding: 1.4rem 1.5rem;
+        padding-right: 4rem;
+    }
+
+    .explore__body h4 {
+        font-size: 1.6rem;
+    }
+
+    .explore__body p {
+        font-size: .8rem;
+    }
+
+    .explore__arrow {
+        right: 1.2rem;
+        bottom: 1.3rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .sig-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer__nav {
+        grid-template-columns: 1fr 1fr;
+        justify-content: stretch;
+    }
+
+    .footer__col--contact {
+        grid-column: 1 / -1;
+    }
+
+    /* Menu page: the veg / non-veg switcher overflowed 320px screens. */
+    .menu__switcher {
+        max-width: 100%;
+    }
+
+    .menu__btn {
+        padding: .65rem 1.2rem;
     }
 }

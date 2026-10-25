@@ -135,53 +135,83 @@
         </div>
     </div>
 
-    <!-- ── EXPLORE GRID — hub linking to every page ── -->
-    <section class="section section--dark section--tight" id="explore">
+    <!-- ── EXPLORE — three featured destinations + quick links ── -->
+    <section class="section section--dark section--tight explore" id="explore">
         <div class="wrap">
             <div class="sec-head reveal">
-                <p class="tag tag--light">Find Your Way</p>
-                <h2 class="heading heading--light">Explore<br /><em>Indian Coffee House</em></h2>
+                <p class="tag">Find Your Way</p>
+                <h2 class="heading">Explore <em>Indian Coffee House</em></h2>
             </div>
-            <div class="explore__grid">
-                <a href="about.html" class="explore__card reveal">
-                    <i class="fa-solid fa-book-open"></i>
-                    <h4>About Us</h4>
-                    <span>Our story since 1958</span>
+            <div class="explore__feature">
+                <a href="menu.html" class="explore__card explore__card--photo reveal">
+                    <picture>
+                        <source srcset="images/dishes/chicken-biriyani.webp" type="image/webp" />
+                        <img src="images/dishes/chicken-biriyani.jpg" alt="Chicken biriyani" loading="lazy" decoding="async" />
+                    </picture>
+                    <div class="explore__body">
+                        <span class="explore__kicker">Eat</span>
+                        <h4>Menu</h4>
+                        <p>Veg &amp; non-veg dishes</p>
+                    </div>
+                    <span class="explore__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
                 </a>
-                <a href="facilities.html" class="explore__card reveal">
-                    <i class="fa-solid fa-champagne-glasses"></i>
-                    <h4>Facilities</h4>
-                    <span>Halls, rooms &amp; more</span>
+                <a href="rooms.html" class="explore__card explore__card--photo reveal">
+                    <picture>
+                        <source srcset="images/rooms-bookings.webp" type="image/webp" />
+                        <img src="images/rooms-bookings.jpg" alt="Guest room with a wooden bed, cane chairs and a window onto the garden" loading="lazy" decoding="async" />
+                    </picture>
+                    <div class="explore__body">
+                        <span class="explore__kicker">Stay</span>
+                        <h4>Rooms &amp; Bookings</h4>
+                        <p>Reserve your stay</p>
+                    </div>
+                    <span class="explore__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
                 </a>
-                <a href="rooms.html" class="explore__card reveal">
-                    <i class="fa-solid fa-bed"></i>
-                    <h4>Rooms &amp; Bookings</h4>
-                    <span>Reserve your stay</span>
+                <a href="branches.html" class="explore__card explore__card--photo reveal">
+                    <picture>
+                        <source srcset="images/hero-section0.webp" type="image/webp" />
+                        <img src="images/hero-section0.jpg" alt="Indian Coffee House storefront" loading="lazy" decoding="async" />
+                    </picture>
+                    <div class="explore__body">
+                        <span class="explore__kicker">Visit</span>
+                        <h4>Branches</h4>
+                        <p>30 locations, 6 districts</p>
+                    </div>
+                    <span class="explore__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
                 </a>
-                <a href="menu.html" class="explore__card reveal">
-                    <i class="fa-solid fa-utensils"></i>
-                    <h4>Menu</h4>
-                    <span>Veg &amp; non-veg dishes</span>
+            </div>
+            <div class="explore__links">
+                <a href="about.html" class="explore__link reveal">
+                    <span class="explore__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span>
+                    <div>
+                        <h4>About Us</h4>
+                        <span>Our story since 1958</span>
+                    </div>
+                    <svg class="explore__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
-                <a href="branches.html" class="explore__card reveal">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <h4>Branches</h4>
-                    <span>30 locations, 6 districts</span>
+                <a href="facilities.html" class="explore__link reveal">
+                    <span class="explore__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span>
+                    <div>
+                        <h4>Facilities</h4>
+                        <span>Halls, rooms &amp; more</span>
+                    </div>
+                    <svg class="explore__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
-                <a href="products.html" class="explore__card reveal">
-                    <i class="fa-solid fa-mug-hot"></i>
-                    <h4>Products</h4>
-                    <span>Coffee to take home</span>
+                <a href="products.html" class="explore__link reveal">
+                    <span class="explore__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg></span>
+                    <div>
+                        <h4>Products</h4>
+                        <span>Coffee to take home</span>
+                    </div>
+                    <svg class="explore__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
-                <a href="contact.html" class="explore__card reveal">
-                    <i class="fa-solid fa-envelope"></i>
-                    <h4>Contact</h4>
-                    <span>Enquiries &amp; nearby places</span>
-                </a>
-                <a href="contact.html" class="explore__card reveal">
-                    <i class="fa-solid fa-phone"></i>
-                    <h4>Book Now</h4>
-                    <span>Reserve a table or room</span>
+                <a href="contact.html" class="explore__link reveal">
+                    <span class="explore__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span>
+                    <div>
+                        <h4>Contact</h4>
+                        <span>Enquiries &amp; directions</span>
+                    </div>
+                    <svg class="explore__link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
