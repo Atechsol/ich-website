@@ -232,7 +232,7 @@ img {
 }
 
 .nav__wordmark {
-    width: clamp(130px, 15vw, 190px);
+    width: clamp(120px, 12vw, 165px);
     height: auto;
     transition: transform .3s var(--ease);
 }
@@ -454,7 +454,7 @@ img {
 }
 
 .hero__layer--base img {
-    filter: blur(var(--blur-base)) brightness(.9) saturate(1.05);
+    filter: blur(var(--blur-base)) brightness(1) saturate(1.08);
 }
 
 .hero__layer--soft img {
@@ -478,7 +478,8 @@ img {
     inset: 0;
     pointer-events: none;
     background:
-        linear-gradient(180deg, rgba(0, 0, 0, .55) 0%, rgba(0, 0, 0, .18) 38%, rgba(0, 0, 0, .3) 62%, rgba(0, 0, 0, .7) 100%);
+        radial-gradient(ellipse 55% 45% at 50% 52%, rgba(0, 0, 0, .28), transparent 75%),
+        linear-gradient(180deg, rgba(0, 0, 0, .38) 0%, rgba(0, 0, 0, .04) 30%, rgba(0, 0, 0, .08) 60%, rgba(0, 0, 0, .5) 100%);
 }
 
 .hero__content {
@@ -516,15 +517,16 @@ img {
 .hero__title {
     font-family: var(--serif);
     font-size: clamp(3.4rem, 8.5vw, 8rem);
-    font-weight: 300;
+    font-weight: 500;
     line-height: .95;
+    letter-spacing: -.01em;
     color: var(--white);
     margin-bottom: 1.5rem;
     text-shadow: 0 4px 30px rgba(0, 0, 0, .55), 0 1px 3px rgba(0, 0, 0, .4);
 }
 
 .hero__title em {
-    color: var(--gold-lt);
+    color: #f0d9a0;
     font-style: italic;
 }
 
@@ -544,31 +546,51 @@ img {
     flex-wrap: wrap;
 }
 
+.hero__actions .btn {
+    height: 3rem;
+    padding: 0 1.9rem;
+    border-radius: 10px;
+    font-size: .92rem;
+    letter-spacing: .02em;
+}
+
 .hero .btn--gold {
-    background: rgba(255, 255, 255, .92);
-    border-color: transparent;
-    color: var(--dark);
+    background: var(--red);
+    border: 1px solid rgba(255, 255, 255, .22);
+    color: var(--white);
+    box-shadow: 0 8px 22px rgba(186, 17, 12, .45), inset 0 1px 0 rgba(255, 255, 255, .22);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
 }
 
 .hero .btn--gold:hover {
-    background: var(--white);
+    background: var(--red-lt);
+    box-shadow: 0 12px 28px rgba(186, 17, 12, .55), inset 0 1px 0 rgba(255, 255, 255, .28);
 }
 
 .hero .btn--ghost {
+    background: rgba(255, 255, 255, .08);
     color: var(--white);
-    border-color: rgba(255, 255, 255, .55);
+    border: 1px solid rgba(255, 255, 255, .6);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, .4);
 }
 
 .hero .btn--ghost:hover {
-    background: rgba(255, 255, 255, .16);
+    background: rgba(255, 255, 255, .18);
     border-color: var(--white);
+    transform: translateY(-2px);
 }
 
 /* Nav sits on the dark hero photo until it scrolls (index.html only). */
-.nav--hero:not(.scrolled) .nav__links a,
-.nav--hero:not(.scrolled) .nav__logomark {
+.nav--hero:not(.scrolled) .nav__links a {
     color: var(--white);
     text-shadow: 0 1px 8px rgba(0, 0, 0, .55);
+}
+
+/* The red wordmark disappears into the red photo, so show it white until the
+   nav scrolls onto its light background. */
+.nav--hero:not(.scrolled) .nav__wordmark {
+    filter: brightness(0) invert(1) drop-shadow(0 1px 6px rgba(0, 0, 0, .5));
 }
 
 .nav--hero:not(.scrolled) .nav__links a:hover,
