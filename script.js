@@ -7,7 +7,7 @@ const pageLoader = document.getElementById('pageLoader');
 if (pageLoader) {
     const hideLoader = () => pageLoader.classList.add('is-hidden');
     window.addEventListener('load', hideLoader);
-    setTimeout(hideLoader, 4000);
+    setTimeout(hideLoader, 2000);
 }
 
 /* ============================================================

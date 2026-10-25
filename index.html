@@ -16,17 +16,19 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
     <link rel="manifest" href="favicon/site.webmanifest" />
     <meta name="theme-color" content="#ba110c" />
-    <link rel="stylesheet" href="style.css?v=9b0c4935" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.min.css?v=b5e356a4" />
+    <link rel="preload" href="fonts/cormorant-garamond-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/cormorant-garamond-italic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="images/hero-section0.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" /></noscript>
 </head>
 
 <body>
     <div class="page-loader" id="pageLoader" aria-hidden="true">
-        <img src="images/ICW- Kannur.png" alt="" class="page-loader__mark" />
+        <picture><source srcset="images/ICW-%20Kannur.webp" type="image/webp" /><img src="images/ICW- Kannur.png" alt="" class="page-loader__mark" width="420" height="420" /></picture>
     </div>
 
     <nav class="nav nav--hero" id="nav">
@@ -81,11 +83,11 @@
             </picture>
             <picture class="hero__layer hero__layer--soft">
                 <source srcset="images/hero-section1.webp" type="image/webp" />
-                <img src="images/hero-section1.jpg" alt="" decoding="async" />
+                <img src="images/hero-section1.jpg" alt="" fetchpriority="low" decoding="async" />
             </picture>
             <picture class="hero__layer hero__layer--reveal">
                 <source srcset="images/hero-section1.webp" type="image/webp" />
-                <img src="images/hero-section1.jpg" alt="" decoding="async" />
+                <img src="images/hero-section1.jpg" alt="" fetchpriority="low" decoding="async" />
             </picture>
             <div class="hero__overlay"></div>
         </div>
@@ -413,7 +415,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=105abc88"></script>
+    <script src="script.min.js?v=638664f8" defer></script>
 </body>
 
 </html>
